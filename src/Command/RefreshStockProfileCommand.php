@@ -47,18 +47,16 @@ class RefreshStockProfileCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $stockProfile = $this->yahooFInanceAPIClient->fetchStockProfile($input->getArgument("symbol"));
+        //Ping to Yahoo API and grab stock respnse profile ['statusCode' => $StatusCode, 'content' => $JsonContent]
 
+        $stockProfile = $this->yahooFInanceAPIClient->fetchStockProfile($input->getArgument("symbol"), $input->getArgument("region"));
 
-        $stock = new Stock();
-        $stock->setSymbol($stockProfile->symbol)
-            ->setShortName($stockProfile->ShortName)
-            ->setCurrency($stockProfile->currency)
-            ->setExchangeName($stockProfile->ExchangeName)
-            ->setRegion($stockProfile->region)
-            ->setPrice($stockProfile->Price)
-            ->setPreviousClose($stockProfile->previousClose)
-        ->setPriceChange($stockProfile->Price - $stockProfile->previousClose);
+        //Handle Error
+        if($stockProfile['statusCode'] !== 200) {
+
+        }
+
+        $stock = $this->serializer->deserialize($stockProfile['content'], Stock::class, 'json');
 
 
        $this->entityManager->persist($stock);
