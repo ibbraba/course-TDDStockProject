@@ -112,6 +112,9 @@
     "phpspec/prophecy": {
         "version": "v1.15.0"
     },
+    "phpstan/phpdoc-parser": {
+        "version": "1.2.0"
+    },
     "phpunit/php-code-coverage": {
         "version": "9.2.15"
     },
@@ -344,6 +347,12 @@
     "symfony/polyfill-php81": {
         "version": "v1.25.0"
     },
+    "symfony/property-access": {
+        "version": "v5.2.12"
+    },
+    "symfony/property-info": {
+        "version": "v5.2.12"
+    },
     "symfony/proxy-manager-bridge": {
         "version": "v5.2.12"
     },
@@ -360,6 +369,9 @@
             "./config/packages/routing.yaml",
             "./config/routes.yaml"
         ]
+    },
+    "symfony/serializer": {
+        "version": "v5.2.12"
     },
     "symfony/service-contracts": {
         "version": "v2.5.0"

@@ -44,12 +44,18 @@ class YahooFinanceAPIClient
         //decodes JSON objects as PHP array, since 7.2.0 used by default if $assoc parameter is null
         $stockprofile=json_decode($request->getContent())->quoteResponse->result[0];
 
-        dd($stockprofile->symbol);
 
 
-
-
-        $stockProfileAsArray = [];
+        $stockProfileAsArray = [
+            "symbol" => $stockprofile->symbol,
+            "currency"=> $stockprofile->currency,
+            "exchangeName" => $stockprofile->fullExchangeName,
+            "shortName" => $stockprofile->shortName,
+            "region" => $stockprofile->region,
+            "price" => $stockprofile->regularMarketPrice,
+            "previousClose" => $stockprofile->regularMarketPreviousClose,
+            "priceChange" => $stockprofile->regularMarketPrice - $stockprofile->regularMarketPreviousClose
+        ];
 
         return [
             "statusCode" => 200,

@@ -11,6 +11,11 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class RefreshStockProfileCommand extends Command
 {
@@ -24,12 +29,19 @@ class RefreshStockProfileCommand extends Command
      * @var YahooFinanceAPIClient
      */
     private $yahooFInanceAPIClient;
+    /**
+     * @var SerializerInterface
+     */
+    private $serializer;
 
 
-    public function __construct(EntityManagerInterface $entityManager, YahooFinanceAPIClient $yahooFInanceAPIClient)
+    public function __construct(EntityManagerInterface $entityManager, YahooFinanceAPIClient $yahooFInanceAPIClient, SerializerInterface $serializer
+                              )
     {
         $this->entityManager = $entityManager;
         $this->yahooFInanceAPIClient = $yahooFInanceAPIClient;
+
+        $this->serializer = $serializer;
 
 
         parent::__construct();
@@ -49,6 +61,8 @@ class RefreshStockProfileCommand extends Command
     {
         //Ping to Yahoo API and grab stock respnse profile ['statusCode' => $StatusCode, 'content' => $JsonContent]
 
+
+
         $stockProfile = $this->yahooFInanceAPIClient->fetchStockProfile($input->getArgument("symbol"), $input->getArgument("region"));
 
         //Handle Error
@@ -56,8 +70,12 @@ class RefreshStockProfileCommand extends Command
 
         }
 
-        $stock = $this->serializer->deserialize($stockProfile['content'], Stock::class, 'json');
-
+/*        $stock = $this->serializer->deserialize()*/
+        /*
+         * TODO : Change YahooFinance to Polygon and fix serializer error
+         */
+       $stock = $this->serializer->deserialize($stockProfile['content'], Stock::class, 'json');
+        dd($stock);
 
        $this->entityManager->persist($stock);
        $this->entityManager->flush();
