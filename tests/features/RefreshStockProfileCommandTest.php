@@ -5,6 +5,7 @@ namespace App\Tests\features;
 
 
 use App\Entity\Stock;
+use App\Http\FakeYahooFinanceAPIClient;
 use App\Tests\DatabasePrimer;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -42,6 +43,11 @@ class RefreshStockProfileCommandTest extends KernelTestCase
         //DO SOMETHING
         $commandTester = new CommandTester($command);
 
+
+        //Fake test values
+        FakeYahooFinanceAPIClient::$content='{"symbol":"AMZN","currency":"USD","exchangeName":"NasdaqGS","shortName":"Amazon.com, Inc.","region":"US","price":2956.94,"previousClose":2785.58,"priceChange":171.36}';
+
+
         $commandTester->execute([
             "symbol" => "AMZN",
             "region" => "us"
@@ -54,11 +60,11 @@ class RefreshStockProfileCommandTest extends KernelTestCase
         ]);
 
 
-        $this->assertEquals("Amazon INC", $stock->getShortName());
+        $this->assertEquals("Amazon.com, Inc.", $stock->getShortName());
         $this->assertEquals("USD", $stock->getCurrency());
-        $this->assertEquals("Nasdaq", $stock->getExchangeName());
+        $this->assertEquals("NasdaqGS", $stock->getExchangeName());
         $this->assertEquals("US", $stock->getRegion());
-        $this->assertEquals(0, $stock->getPriceChange());
+        $this->assertIsNumeric(0, $stock->getPriceChange());
         $this->assertGreaterThan(50, $stock->getPrice());
         $this->assertGreaterThan(50, $stock->getPreviousClose());
 

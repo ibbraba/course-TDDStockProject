@@ -8,7 +8,7 @@ use phpDocumentor\Reflection\Types\This;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class YahooFinanceAPIClient
+class YahooFinanceAPIClient implements FinanceApiClientInterface
 {
     /**
      * @var HttpClientInterface

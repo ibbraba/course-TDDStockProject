@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use App\Entity\Stock;
+use App\Http\FinanceApiClientInterface;
 use App\Http\YahooFinanceAPIClient;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
@@ -25,25 +26,29 @@ class RefreshStockProfileCommand extends Command
      * @var EntityManagerInterface
      */
     private $entityManager;
-    /**
-     * @var YahooFinanceAPIClient
-     */
-    private $yahooFInanceAPIClient;
+
     /**
      * @var SerializerInterface
      */
     private $serializer;
+    /**
+     * @var FinanceApiClientInterface
+     *
+     */
+    private $financeApiClient;
 
 
-    public function __construct(EntityManagerInterface $entityManager, YahooFinanceAPIClient $yahooFInanceAPIClient,
+    public function __construct(EntityManagerInterface $entityManager, FinanceApiClientInterface $financeApiClient,
                                 SerializerInterface $serializer
                               )
     {
         $this->entityManager = $entityManager;
-        $this->yahooFInanceAPIClient = $yahooFInanceAPIClient;
+
 
         $this->serializer = $serializer;
 
+
+        $this->financeApiClient= $financeApiClient;
 
         parent::__construct();
     }
@@ -64,7 +69,7 @@ class RefreshStockProfileCommand extends Command
 
 
 
-        $stockProfile = $this->yahooFInanceAPIClient->fetchStockProfile($input->getArgument("symbol"), $input->getArgument("region"));
+        $stockProfile = $this->financeApiClient->fetchStockProfile($input->getArgument("symbol"), $input->getArgument("region"));
 
         //Handle Error
         if($stockProfile['statusCode'] !== 200) {
@@ -79,9 +84,9 @@ class RefreshStockProfileCommand extends Command
 
 
 
-/*        dd($stockProfile['content']);*/
+
+        /*        dd($stockProfile['content']);*/
         $stock = $this->serializer->deserialize($stockProfile['content'], Stock::class, 'json', array("arrtibutes" => "id"));
-        dd($stock);
        $this->entityManager->persist($stock);
        $this->entityManager->flush();
 
