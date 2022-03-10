@@ -15,47 +15,47 @@ class Stock
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    public $id;
 
     /**
      * @ORM\Column(type="string", length=4)
      */
-    private $symbol;
+    public  $symbol;
 
     /**
      * @ORM\Column(type="string", length=5)
      */
-    private $currency;
+    public  $currency;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=0)
+     * @ORM\Column(type="string", precision=10, scale=0)
      */
-    private $exchangeName;
+    public  $exchangeName;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=0, nullable=true)
+     * @ORM\Column(type="float", precision=10, scale=0, nullable=true)
      */
-    private $priceChange;
+    public  $priceChange;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=0, nullable=true)
+     * @ORM\Column(type="float", precision=10, scale=0, nullable=true)
      */
-    private $price;
+    public  $price;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=0, nullable=true)
+     * @ORM\Column(type="float", precision=10, scale=0, nullable=true)
      */
-    private $previousClose;
+    public  $previousClose;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $shortName;
+    public  $shortName;
 
     /**
      * @ORM\Column(type="string", length=5)
      */
-    private $region;
+    public  $region;
 
     public function getId(): ?int
     {
@@ -98,36 +98,36 @@ class Stock
         return $this;
     }
 
-    public function getPriceChange(): ?string
+    public function getPriceChange(): ?float
     {
         return $this->priceChange;
     }
 
-    public function setPriceChange(?string $priceChange): self
+    public function setPriceChange(float $priceChange): self
     {
         $this->priceChange = $priceChange;
 
         return $this;
     }
 
-    public function getPrice(): ?string
+    public function getPrice(): ?float
     {
         return $this->price;
     }
 
-    public function setPrice(?string $price): self
+    public function setPrice(float $price): self
     {
         $this->price = $price;
 
         return $this;
     }
 
-    public function getPreviousClose(): ?string
+    public function getPreviousClose(): ?float
     {
         return $this->previousClose;
     }
 
-    public function setPreviousClose(?string $previousClose): self
+    public function setPreviousClose(float $previousClose): self
     {
         $this->previousClose = $previousClose;
 

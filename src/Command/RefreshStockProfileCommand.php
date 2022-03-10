@@ -35,7 +35,8 @@ class RefreshStockProfileCommand extends Command
     private $serializer;
 
 
-    public function __construct(EntityManagerInterface $entityManager, YahooFinanceAPIClient $yahooFInanceAPIClient, SerializerInterface $serializer
+    public function __construct(EntityManagerInterface $entityManager, YahooFinanceAPIClient $yahooFInanceAPIClient,
+                                SerializerInterface $serializer
                               )
     {
         $this->entityManager = $entityManager;
@@ -68,15 +69,19 @@ class RefreshStockProfileCommand extends Command
         //Handle Error
         if($stockProfile['statusCode'] !== 200) {
 
+            dd($stockProfile['statusCode']);
         }
 
 /*        $stock = $this->serializer->deserialize()*/
         /*
          * TODO : Change YahooFinance to Polygon and fix serializer error
          */
-       $stock = $this->serializer->deserialize($stockProfile['content'], Stock::class, 'json');
-        dd($stock);
 
+
+
+/*        dd($stockProfile['content']);*/
+        $stock = $this->serializer->deserialize($stockProfile['content'], Stock::class, 'json', array("arrtibutes" => "id"));
+        dd($stock);
        $this->entityManager->persist($stock);
        $this->entityManager->flush();
 

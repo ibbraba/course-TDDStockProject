@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class DatabaseDenpendenciesTestCase extends KernelTestCase
 {
-    private $entityManager;
+    protected $entityManager;
 
 
     protected function setUp(): void

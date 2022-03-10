@@ -5,14 +5,12 @@ namespace App\Tests;
 
 
 use App\Entity\Stock;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
+
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class StockTest extends DatabaseDenpendenciesTestCase
 {
-    private $entityManager;
-
-
 
     public function test_stock_can_be_created_in_db(){
 

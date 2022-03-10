@@ -26,7 +26,7 @@ class YahooFinanceAPIClientTest extends DatabaseDenpendenciesTestCase
         $this->assertSame("USD", $stockProfile->currency);
         $this->assertSame("NasdaqGS", $stockProfile->exchangeName);
         $this->assertSame("US", $stockProfile->region);
-        $this->assertIsFloat( $stockProfile->price);
+       $this->assertIsNumeric( $stockProfile->price);
         $this->assertIsFloat( $stockProfile->previousClose);
         $this->assertIsFloat( $stockProfile->priceChange);
     }
