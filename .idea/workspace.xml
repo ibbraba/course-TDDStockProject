@@ -3,13 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4041ef6e-b447-4d8b-8918-ddcc564e0c33" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Command/RefreshStockProfileCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/RefreshStockProfileCommand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Http/FakeYahooFinanceAPIClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/FakeYahooFinanceAPIClient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Http/YahooFinanceAPIClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/YahooFinanceAPIClient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/StockTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/StockTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/features/RefreshStockProfileCommandTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/features/RefreshStockProfileCommandTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/integration/YahooFinanceAPIClientTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integration/YahooFinanceAPIClientTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +156,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1646757363709</updated>
-      <workItem from="1646757365443" duration="36038000" />
+      <workItem from="1646757365443" duration="38154000" />
     </task>
     <servers />
   </component>

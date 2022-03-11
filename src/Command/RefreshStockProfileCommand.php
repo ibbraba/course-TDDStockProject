@@ -76,7 +76,9 @@ class RefreshStockProfileCommand extends Command
         //Handle Error
         if($stockProfile->getStatusCode() !== 200) {
 
-            dd($stockProfile['statusCode']);
+            return Command::FAILURE;
+
+
         }
 
 
@@ -90,7 +92,7 @@ class RefreshStockProfileCommand extends Command
 
 
         /*        dd($stockProfile['content']);*/
-        $stock = $this->serializer->deserialize($stockProfile->getContent(), Stock::class, 'json', array("arrtibutes" => "id"));
+        $stock = $this->serializer->deserialize($stockProfile->getContent(), Stock::class, 'json');
        $this->entityManager->persist($stock);
        $this->entityManager->flush();
 

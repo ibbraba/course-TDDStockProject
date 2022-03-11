@@ -81,4 +81,43 @@ class RefreshStockProfileCommandTest extends KernelTestCase
 
     }
 
+    /**
+     * @test
+     */
+    public function test_non_200_responses_are_handled(){
+        $application = new Application(self::$kernel);
+        $command = $application->find("app:refresh-stock-profile");
+
+
+        //DO SOMETHING
+        $commandTester = new CommandTester($command);
+
+        FakeYahooFinanceAPIClient::$statusCode = 500;
+        FakeYahooFinanceAPIClient::$content = "Finance API client Error";
+
+
+
+        $commandStatus = $commandTester->execute([
+            "symbol" => "AMZN",
+            "region" => "us"
+        ]);
+
+
+
+
+        // Retrieve from DB
+        $repo = $this->entityManager->getRepository(Stock::class);
+     /*   $stock =$repo->findOneBy([
+            "symbol" => "AMZN"
+        ]);*/
+
+        $count = $repo->createQueryBuilder("stock")
+                    ->select('count(stock.id)')
+                    ->getQuery()
+                    ->getSingleScalarResult();
+        // 1 = COMMAND FAILURE
+        $this->assertEquals(1, $commandStatus);
+
+        $this->assertEquals(0, $count);
+    }
 }
