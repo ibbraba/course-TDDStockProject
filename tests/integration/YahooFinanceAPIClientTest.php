@@ -18,15 +18,21 @@ class YahooFinanceAPIClientTest extends DatabaseDenpendenciesTestCase
 
         $response = $yahooFinanceAPIClient->fetchStockProfile("AMZN", "US");
 
-        $stockProfile= json_decode($response["content"]);
+
+
+
+
+        $stockProfile= json_decode($response->getContent());
+
 
         // Assertion
+        $this->assertEquals(200, $response->getStatusCode());
         $this->assertSame("AMZN", $stockProfile->symbol);
         $this->assertSame("Amazon.com, Inc.", $stockProfile->shortName);
         $this->assertSame("USD", $stockProfile->currency);
         $this->assertSame("NasdaqGS", $stockProfile->exchangeName);
         $this->assertSame("US", $stockProfile->region);
-       $this->assertIsNumeric( $stockProfile->price);
+        $this->assertIsNumeric( $stockProfile->price);
         $this->assertIsFloat( $stockProfile->previousClose);
         $this->assertIsFloat( $stockProfile->priceChange);
     }

@@ -34,6 +34,13 @@ class RefreshStockProfileCommandTest extends KernelTestCase
         $this->entityManager = null;
     }
 
+
+    /**
+     * @test
+     * Integgration test
+     * Test the logic of our application
+     * Assert we get some stock values
+     */
     public function test_refresh_stock_command_behaves_corectly_if_stock_doesnt_exist(){
         //Setup
         $application = new Application(self::$kernel);
@@ -48,17 +55,21 @@ class RefreshStockProfileCommandTest extends KernelTestCase
         FakeYahooFinanceAPIClient::$content='{"symbol":"AMZN","currency":"USD","exchangeName":"NasdaqGS","shortName":"Amazon.com, Inc.","region":"US","price":2956.94,"previousClose":2785.58,"priceChange":171.36}';
 
 
+
+        //Flush in DB
         $commandTester->execute([
             "symbol" => "AMZN",
             "region" => "us"
             ]);
 
-            //ASSERTION
+
+        // Retrieve from DB
         $repo = $this->entityManager->getRepository(Stock::class);
         $stock =$repo->findOneBy([
             "symbol" => "AMZN"
         ]);
 
+        //ASSERTION
 
         $this->assertEquals("Amazon.com, Inc.", $stock->getShortName());
         $this->assertEquals("USD", $stock->getCurrency());

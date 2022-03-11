@@ -71,11 +71,15 @@ class RefreshStockProfileCommand extends Command
 
         $stockProfile = $this->financeApiClient->fetchStockProfile($input->getArgument("symbol"), $input->getArgument("region"));
 
+
+
         //Handle Error
-        if($stockProfile['statusCode'] !== 200) {
+        if($stockProfile->getStatusCode() !== 200) {
 
             dd($stockProfile['statusCode']);
         }
+
+
 
 /*        $stock = $this->serializer->deserialize()*/
         /*
@@ -86,7 +90,7 @@ class RefreshStockProfileCommand extends Command
 
 
         /*        dd($stockProfile['content']);*/
-        $stock = $this->serializer->deserialize($stockProfile['content'], Stock::class, 'json', array("arrtibutes" => "id"));
+        $stock = $this->serializer->deserialize($stockProfile->getContent(), Stock::class, 'json', array("arrtibutes" => "id"));
        $this->entityManager->persist($stock);
        $this->entityManager->flush();
 

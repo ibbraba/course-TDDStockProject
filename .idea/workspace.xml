@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4041ef6e-b447-4d8b-8918-ddcc564e0c33" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/services_test.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Http/FakeYahooFinanceAPIClient.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Http/FinanceApiClientInterface.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Command/RefreshStockProfileCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/RefreshStockProfileCommand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Http/FakeYahooFinanceAPIClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/FakeYahooFinanceAPIClient.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Http/YahooFinanceAPIClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/YahooFinanceAPIClient.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/StockTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/StockTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/features/RefreshStockProfileCommandTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/features/RefreshStockProfileCommandTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/integration/YahooFinanceAPIClientTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integration/YahooFinanceAPIClientTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,11 +138,20 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHPUnit.RefreshStockProfileCommandTest.test_refresh_stock_command_behaves_corectly_if_stock_doesnt_exist">
+    <configuration name="RefreshStockProfileCommandTest.test_refresh_stock_command_behaves_corectly_if_stock_doesnt_exist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="App\Tests\features\RefreshStockProfileCommandTest" file="$PROJECT_DIR$/tests/features/RefreshStockProfileCommandTest.php" method="test_refresh_stock_command_behaves_corectly_if_stock_doesnt_exist" scope="Method" />
+      <method v="2" />
+    </configuration>
     <configuration name="phpunit.xml.dist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHPUnit.RefreshStockProfileCommandTest.test_refresh_stock_command_behaves_corectly_if_stock_doesnt_exist" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -152,7 +161,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1646757363709</updated>
-      <workItem from="1646757365443" duration="27844000" />
+      <workItem from="1646757365443" duration="36038000" />
     </task>
     <servers />
   </component>

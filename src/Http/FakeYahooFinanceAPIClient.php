@@ -4,20 +4,24 @@
 namespace App\Http;
 
 
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 class FakeYahooFinanceAPIClient implements FinanceApiClientInterface
 {
     public static $statusCode = 200;
     public static $content = "";
 
 
-    public function fetchStockProfile(string $symbol, string $region){
+    public function fetchStockProfile(string $symbol, string $region): JsonResponse{
 
+/*
 
-
-        return [
+        $response = [
             "statusCode" => self::$statusCode,
             "content" => self::$content
-        ];
+        ];*/
+
+        return new JsonResponse(self::$content, self::$statusCode, [], true);
 
     }
 

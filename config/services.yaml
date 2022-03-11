@@ -42,4 +42,4 @@ services:
         class: App\Http\YahooFinanceAPIClient
         public: true
     App\Http\FinanceApiClientInterface:
-        class: App\Http\YahooFinanceAPIClient
+        class: App\Http\FakeYahooFinanceAPIClient

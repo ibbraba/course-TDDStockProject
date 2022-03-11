@@ -12,6 +12,12 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 class StockTest extends DatabaseDenpendenciesTestCase
 {
 
+
+    /**
+     * @test
+     * Unit Test
+     * Test Each field of our Stock Entity
+     */
     public function test_stock_can_be_created_in_db(){
 
         //SetUP
